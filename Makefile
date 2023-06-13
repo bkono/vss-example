@@ -2,6 +2,7 @@ OSNAME=$(shell uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(shell uname -m)
 VSSOS=$(OSNAME)
 VSS_VERSION=v0.1.1-alpha.19
+DBNAME?=db.sqlite
 
 ifeq ($(OSNAME),darwin)
 	VSSOS=macos
@@ -22,7 +23,7 @@ build: extensions
 
 demo: build
 	@echo "Running demo"
-	@./bin/demo
+	@./bin/demo -db $(DBNAME)
 
 clean:
 	@echo "Cleaning"

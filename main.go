@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"context"
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -14,7 +15,10 @@ import (
 )
 
 func main() {
-	repo, err := db.New(":memory:")
+	dbname := flag.String("db", "db.sqlite", "database filename, set to :memory: to use in-memory database")
+	flag.Parse()
+
+	repo, err := db.New(*dbname)
 	if err != nil {
 		log.Fatal(err)
 	}
